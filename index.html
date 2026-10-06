@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#05070b">
+<link rel="manifest" href="manifest.webmanifest">
+<title>NEXUS CAM</title>
+<link rel="stylesheet" href="style.css">
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.22.0/dist/tf.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd@2.2.3/dist/coco-ssd.min.js"></script>
+</head>
+<body>
+<header><div class="brand"><span>NEXUS</span> CAM</div><div id="status">● OFFLINE</div></header>
+<main>
+<section class="viewer">
+<div class="videoWrap">
+<video id="video" autoplay playsinline muted></video><canvas id="overlay"></canvas>
+<div class="hud"><b id="aiStatus">AI: OFF</b><span id="detections">0 objects</span></div><div class="centerBox"></div>
+</div>
+<div class="controls">
+<button data-cmd="pan_left">◀ PAN LEFT</button><button data-cmd="tilt_up">▲ TILT UP</button>
+<button data-cmd="tilt_down">▼ TILT DOWN</button><button data-cmd="pan_right">PAN RIGHT ▶</button>
+</div>
+<div class="row"><label>Pan speed<input id="panSpeed" type="range" min="1" max="10" value="5"></label><label>Tilt speed<input id="tiltSpeed" type="range" min="1" max="10" value="5"></label></div>
+</section>
+<aside>
+<h2>VISION + LANGUAGE AI</h2>
+<label>What should I lock onto?<input id="targetText" value="red cup" placeholder="small blue bottle, red box, person"></label>
+<button id="voiceCommand">🎙️ SAY TARGET</button>
+<button id="startAI">START AI</button>
+<button id="scanTarget">🔎 SCAN FOR TARGET</button>
+<button id="trackTarget" class="enable">🎯 TRACK TARGET</button>
+<button id="unlockTarget">UNLOCK / MANUAL</button>
+<div id="trackState" class="trackState">● IDLE</div>
+<div id="targetReadout">Target: red cup</div>
+<div class="score">Best match: <b id="matchScore">—</b></div>
+<p class="note">The vision-language stage compares the spoken description with candidate image regions. It uses the general detector to propose regions and a language-image model to rank them.</p>
+
+<h2>VOICE</h2>
+<label>Voice updates <input id="voiceToggle" type="checkbox" checked></label>
+<label>Volume<input id="voiceVolume" type="range" min="0" max="1" step=".05" value=".8"></label>
+<label>Speech speed<input id="voiceRate" type="range" min=".7" max="1.3" step=".05" value=".95"></label>
+<button id="testVoice">🔊 TEST VOICE</button>
+
+<h2>CONNECTION</h2>
+<input id="nanoIP" placeholder="Nano ESP32 IP address"><button id="connect">CONNECT</button><div id="connText">Not connected</div>
+
+<h2>SYSTEM</h2>
+<button id="camera">START WEBCAM</button><button id="fullscreen">FULL SCREEN</button>
+<button id="enable" class="enable">ENABLE MOTORS</button><button id="estop" class="stop">EMERGENCY STOP</button>
+</aside></main>
+<footer>NEXUS CAM • VISION-LANGUAGE TARGET CONTROL</footer>
+<script src="app.js"></script>
+</body></html>

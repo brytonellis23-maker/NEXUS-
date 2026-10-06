@@ -1,0 +1,1 @@
+{"name":"NEXUS CAM","short_name":"NEXUS CAM","start_url":"./","display":"standalone","background_color":"#05070b","theme_color":"#05070b","description":"Vision-language target recognition and remote camera control.","icons":[{"src":"icon.svg","sizes":"any","type":"image/svg+xml","purpose":"any maskable"}]}
